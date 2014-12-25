@@ -8,6 +8,9 @@ files=("${libfiles[@]}" "${corefiles[@]}" "${modulefiles[@]}" "${vendorfiles[@]}
 
 paths=("Chrome" "XPI/data" "Opera" "OperaBlink" "RES.safariextension")
 
+pegjs --export-var "RESUtils.filterParser" lib/core/filter.pegjs lib/core/filter.js
+
+
 for i in "${files[@]}"
 do
 	for j in "${paths[@]}"

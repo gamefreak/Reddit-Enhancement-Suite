@@ -9,12 +9,21 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     del = require('del'),
     bump = require('gulp-bump'),
-    zip = require('gulp-zip');
+    zip = require('gulp-zip'),
+    peg = require('gulp-peg');
     
 // What happens when you do gulp without any arguments
 gulp.task('default', ['clean'], function() {
     gulp.start('chrome', 'safari', 'firefox', 'oblink', 'opera');
 });
+
+
+gulp.task('peg:compile', function(){
+	return gulp.src('lib/core/filter.pegjs')
+	           .pipe(peg({exportVar: 'RESUtils.filterParser'}))
+	           .pipe(gulp.dest("lib/core"));
+})
+
 
 // Browser task runs subtasks
 gulp.task('chrome', ['chrome-css', 'chrome-js', 'chrome-img', 'chrome-move']);
@@ -90,7 +99,7 @@ gulp.task('vendor-js-chrome', function() {
 		.pipe(gulp.dest('dist/chrome/vendor'))
 });
 
-gulp.task('core-js-chrome', function() {
+gulp.task('core-js-chrome', ['peg:compile'], function() {
 	return gulp.src('lib/core/*.js')
 		.pipe(gulp.dest('dist/chrome/core'))
 });
@@ -166,7 +175,7 @@ gulp.task('vendor-js-safari', function() {
 		.pipe(gulp.dest('dist/safari/vendor'))
 });
 
-gulp.task('core-js-safari', function() {
+gulp.task('core-js-safari', ['peg:compile'], function() {
 	return gulp.src('lib/core/*.js')
 		.pipe(gulp.dest('dist/safari/core'))
 });
@@ -241,7 +250,7 @@ gulp.task('vendor-js-firefox', function() {
 		.pipe(gulp.dest('dist/firefox/vendor'))
 });
 
-gulp.task('core-js-firefox', function() {
+gulp.task('core-js-firefox', ['peg:compile'], function() {
 	return gulp.src('lib/core/*.js')
 		.pipe(gulp.dest('dist/firefox/core'))
 });
@@ -296,7 +305,7 @@ gulp.task('vendor-js-oblink', function() {
 		.pipe(gulp.dest('dist/oblink/vendor'))
 });
 
-gulp.task('core-js-oblink', function() {
+gulp.task('core-js-oblink', ['peg:compile'], function() {
 	return gulp.src('lib/core/*.js')
 		.pipe(gulp.dest('dist/oblink/core'))
 });
@@ -367,7 +376,7 @@ gulp.task('vendor-js-opera', function() {
 		.pipe(gulp.dest('dist/opera/vendor'))
 });
 
-gulp.task('core-js-opera', function() {
+gulp.task('core-js-opera', ['peg:compile'], function() {
 	return gulp.src('lib/core/*.js')
 		.pipe(gulp.dest('dist/opera/core'))
 });
@@ -446,5 +455,5 @@ gulp.task('opera-zip', function() {
 
 // Other
 gulp.task('clean', function(cb) {
-	del(['dist/**/*'], cb)
+	del(['dist/**/*', 'lib/core/filter.js'], cb)
 });

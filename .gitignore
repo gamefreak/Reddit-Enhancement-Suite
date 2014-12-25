@@ -11,7 +11,11 @@
 *.safariextz
 *.zip
 
+#PEG.js output
+/lib/core/filter.js
+
 # Copied files
+/dist/*
 /Chrome/*.js
 /Chrome/*.css
 /Chrome/templates.html
