@@ -34,6 +34,7 @@
 				"core/migrate.js",
 				"core/storage.js",
 				"core/template.js",
+				"core/filter.js",
 				"vendor/konami.js",
 				"vendor/hogan-3.0.2.js",
 				"vendor/mediacrush.js",

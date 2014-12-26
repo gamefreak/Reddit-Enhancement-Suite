@@ -47,6 +47,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		'core/migrate.js',
 		'core/storage.js',
 		'core/template.js',
+		'core/filter.js',
 
 		'modules/submitIssue.js',
 		'modules/about.js',

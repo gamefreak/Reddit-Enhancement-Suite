@@ -46,6 +46,7 @@
 				<string>core/migrate.js</string>
 				<string>core/storage.js</string>
 				<string>core/template.js</string>
+				<string>core/filter.js</string>
 				<string>vendor/konami.js</string>
 				<string>vendor/mediacrush.js</string>
 				<string>vendor/gfycat.js</string>
