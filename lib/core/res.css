@@ -166,14 +166,26 @@ body.res-console-open {
 	width: 24px;
 	height: 22px;
 }
-.optionsTable .res-icon-button {
+.optionContainer .res-icon-button {
 	cursor: pointer;
 	width: 16px;
 	height: 16px;
 	margin-left: 2px;
 	margin-right: 2px;
+	opacity: 0.25;
 }
-.optionsTable .handle {
+.optionContainer .res-icon-button:hover {
+	opacity: 1.0;
+}
+.optionContainer tr .deleteButton,
+.optionContainer .builderWrap .deleteButton {
+	visibility: hidden;
+}
+.optionContainer tr:hover .deleteButton,
+.optionContainer .builderWrap:hover > .builderTrailingControls .deleteButton {
+	visibility: visible;
+}
+.optionContainer .handle {
 	cursor: move;
 }
 #openRESPrefs {
@@ -261,8 +273,10 @@ body.res-console-open {
 #RESConsoleContent.advanced-options-disabled .optionContainer.advanced {
 	display: none;
 }
-.optionContainer.advanced>label{
-	font-style: italic;
+.optionContainer.advanced > label:after {
+	content: '\26A0';
+	margin-left: 0.5em;
+	color: red;
 }
 .RESDialogSmall {
 	background-color: #fff;
@@ -592,7 +606,7 @@ p.moduleListing {
 }
 .optionContainer table {
 	clear: both;
-	width: 650px;
+	min-width: 100%;
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
@@ -1431,8 +1445,11 @@ tr.RESSortPlaceholder::before, li.RESSortPlaceholder::after, div.RESSortPlacehol
 	text-align: center;
 	border-radius: 3px;
 	display: block;
+	margin-bottom: 5px;
 }
-
+.optionBuilder .RESSortPlaceholder::after {
+	padding: 1em 2em;
+}
 .optionBuilder li {
 	list-style-type: none !important;
 	margin-top: 0.3em;
@@ -1453,50 +1470,69 @@ tr.RESSortPlaceholder::before, li.RESSortPlaceholder::after, div.RESSortPlacehol
 }
 
 .builderItem {
-	/*border: thin solid lightgrey;*/
+	border: thin solid lightgrey;
 	border-radius: 5px;
+	background-color: rgba(10, 10, 10, 0.05);
+	padding: 0.4em 0.5em;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
 }
 
-.builderControls, .builderBlock {
-	display: inline-block;
-}
 .builderControls {
+	float: left;
 	padding: 0.1em;
 	vertical-align: top;
+}
+.builderTrailingControls {
+	float: right;
 }
 
 .builderMulti {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+.builderMulti li:after {
+	content: ' ';
+	display: block;
+	clear: both;
+	height: 0px;
+}
+.builderMulti li + li {
+	border-top: 1px lightgray dashed;
+	margin-top: 1px;
+	padding-top: 3px;
+}
+.builderMulti li:nth-of-type(2n) {
+	background-color: rgba(10, 10, 10, 0.05);
+}
 
-.builderItem > .handle {
+.builderItem > .handle, .builderItem > .builderItemControls .res-icon-button {
 	vertical-align: top;
 	font-size: 30pt;
+	width: auto;
+	height: auto;
+}
+, .builderItem > .builderItemControls .res-icon-button {
+	font-size: 20pt;
 }
 
 .builderItemControls {
 	display: inline-block;
 	vertical-align: top;
 }
-.builderItemControls div {
-	display: block;
-	margin: 3px;
-}
 
 .builderMulti:empty::before {
 	border: medium dashed grey;
 	border-radius: 3px;
 	color: grey;
-	content: 'drag conditions here';
+	content: 'nothing here yet. add something!';
+	padding: 5px 10px;
 	vertical-align: center;
 	text-align: center;
 	display: block;
 }
 .addBuilderBlock {
-	float: right;
+	margin-left: 1.5em;
 }
 
 .checkset {
@@ -1510,6 +1546,7 @@ tr.RESSortPlaceholder::before, li.RESSortPlaceholder::after, div.RESSortPlacehol
 	border: thin grey solid;
 	background-color: white;
 	padding: 2px 4px;
+	cursor: pointer;
 }
 .checkset label:first-of-type {
 	border-top-left-radius: 6px;
