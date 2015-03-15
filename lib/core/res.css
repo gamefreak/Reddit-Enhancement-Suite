@@ -1,4 +1,52 @@
-body.res-console-open {
+
+#TutorialOverlay {
+display: none;
+}
+
+.res-tutorials-open #TutorialOverlay {
+	display: block;
+}
+
+#TutorialOverlay .RESDialogSmall {
+	position: absolute !important;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 2em;
+
+}
+#TutorialOverlay .RESDialogContents {
+	position: absolute !important;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	box-sizing: border-box;
+	overflow: scroll;
+	padding-top: 52px;
+	padding-bottom: 24px;
+
+}
+
+#TutorialFoot {
+	position: absolute !important;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+#TutorialNext {
+	float: right;
+}
+#TutorialPrevious {
+	float: left;
+}
+
+
+
+body.res-console-open, body.res-tutorials-open {
 	overflow: hidden;
 }
 #RESConsoleContainer {
@@ -286,7 +334,7 @@ body.res-console-open {
 	color: #666;
 	position: relative;
 }
-.RESDialogSmall > h3 {
+.RESDialogSmall > h3{
 	color: #000;
 	font-size: 14px;
 	margin: 0 0 10px;
@@ -1052,7 +1100,7 @@ body.RESScrollLock {
 	height: 100%;
 	overflow: hidden;
 }
-#BigEditor {
+#BigEditor, #TutorialOverlay {
 	position: fixed;
 	z-index: 2000;
 	top: 0;

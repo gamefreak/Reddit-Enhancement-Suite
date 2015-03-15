@@ -102,7 +102,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		'modules/upload.js',
 		'modules/modhelper.js',
 		'modules/quickMessage.js',
-
+		'modules/tutorials.js',
 		'modules/hosts/imgur.js',
 		'modules/hosts/gfycat.js',
 		'modules/hosts/gifyoutube.js',
